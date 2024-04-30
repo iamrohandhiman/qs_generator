@@ -12,8 +12,10 @@ const app = express();
 const endpointLogger = require('./middleware/endpointLogger.js')
 
 
+require('dotenv').config();
+
 // MongoDB setup
-mongoose.connect('mongodb://localhost:27017/qsGen', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }); // 'mongodb://localhost:27017/qsGen'
 const db = mongoose.connection;
 
 db.on('error', (err) => {
